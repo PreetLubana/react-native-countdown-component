@@ -102,20 +102,17 @@ class CountDown extends React.Component {
         this.props.onFinish();
       }
       if (this.props.onChange) {
-        this.props.onChange(until);
-      }
+  this.props.onChange(this.state.until);
+}
     }
 
     if (until === 0) {
       this.setState({lastUntil: 0, until: 0});
     } else {
-      if (this.props.onChange) {
-        this.props.onChange(until);
-      }
-      this.setState({
-        lastUntil: until,
-        until: Math.max(0, until - 1)
-      });
+     if (this.props.onChange) {
+  this.props.onChange(this.state.until);
+}
+      this.setState({lastUntil: until, until: until - 1});
     }
   };
 
@@ -125,7 +122,7 @@ class CountDown extends React.Component {
       <View style={[
         styles.digitCont,
         digitStyle,
-        {width: size * 2.3, height: size * 2.6},
+        {width: 20, height: 20},
       ]}>
         <Text style={[
           styles.digitTxt,
@@ -144,7 +141,7 @@ class CountDown extends React.Component {
       return (
         <Text style={[
           styles.timeTxt,
-          {fontSize: size / 1.8},
+          {fontSize: 14, color:'#ffffff'},
           timeLabelStyle,
         ]}>
           {label}
@@ -167,10 +164,10 @@ class CountDown extends React.Component {
   renderSeparator = () => {
     const {separatorStyle, size} = this.props;
     return (
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{justifyContent: 'flex-start', alignItems: 'flex-start'}}>
         <Text style={[
           styles.separatorTxt,
-          {fontSize: size * 1.2},
+          {fontSize: 14},
           separatorStyle,
         ]}>
           {':'}
@@ -261,3 +258,4 @@ const styles = StyleSheet.create({
 });
 
 module.exports = CountDown;
+
